@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev.to Articles - WeCoded</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #0d0d0d, #1a1a1a);
+            overflow-x: hidden;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card-container {
+            width: 100%;
+            background: transparent;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .card-container:hover {
+            transform: scale(1.05);
+        }
+
+        .glow-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #0f0, #80f, #00f, #0f0);
+            background-clip: padding-box;
+            box-shadow: 0 0 15px #0f0, 0 0 25px #80f, 0 0 35px #00f;
+            animation: glow 2s linear infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #0f0; }
+            50% { box-shadow: 0 0 20px #80f; }
+            100% { box-shadow: 0 0 30px #00f; }
+        }
+
+        .card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card-img:hover {
+            transform: scale(1.1);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .btn-glow {
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #00f, #0f0, #80f);
+            box-shadow: 0 0 15px #0f0;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow:hover {
+            background: linear-gradient(90deg, #80f, #0f0, #00f);
+            box-shadow: 0 0 30px #0f0;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .card-title { font-size: 20px; }
+            .card-text { font-size: 14px; }
+            .btn-glow { font-size: 14px; padding: 8px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center mb-4">Latest Dev.to Articles (WeCoded)</h1>
+        <div id="articles"></div>
+    </div>
+
+    <script>
+        async function fetchArticles() {
+            try {
+                let response = await fetch("https://dev.to/api/articles?tag=wecoded");
+                let data = await response.json();
+                
+                $("#articles").html(""); // Clear previous content
+
+                data.slice(0, 5).forEach(article => { // Limit to 5 articles
+                    let coverImage = article.cover_image 
+                        ? article.cover_image 
+                        : "https://via.assets.so/img.jpg?w=400&h=150&tc=Gray&bg=green"; 
+
+                    let articleCard = $(`
+                        <div class="card-container">
+                            <div class="glow-border"></div>
+                            <div class="card-content">
+                                <img src="${coverImage}" alt="Article Cover" class="card-img" onerror="this.onerror=null; this.src='https://via.assets.so/img.jpg?w=400&h=150&tc=Gray&bg=green';">
+                                <h2 class="card-title">${article.title}</h2>
+                                <p class="card-text">${article.description || "No description available."}</p>
+                                <a href="${article.url}" target="_blank" class="btn-glow">Read Full Article</a>
+                            </div>
+                        </div>
+                    `);
+
+                    $("#articles").append(articleCard);
+                });
+            } catch (error) {
+                console.error("Error fetching articles:", error);
+                $("#articles").html("<p>Failed to load articles. Please try again later.</p>");
+            }
+        }
+
+        $(document).ready(fetchArticles);
+    </script>
+
+</body>
+</html>
