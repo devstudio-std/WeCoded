@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d0d0d;
+            color: white;
+            padding: 20px;
+        }
+
+        .contact-container {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-image-source: linear-gradient(45deg, #0f0, #80f, #00f);
+            border-image-slice: 1;
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-control {
+            background: transparent;
+            border: 2px solid #00f;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: #0f0;
+            box-shadow: 0 0 5px #0f0;
+        }
+
+        .btn-glow {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #00f, #0f0, #80f);
+            box-shadow: 0 0 10px #0f0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-glow:hover {
+            background: linear-gradient(90deg, #80f, #0f0, #00f);
+            box-shadow: 0 0 15px #0f0;
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 576px) {
+            .contact-container {
+                padding: 15px;
+            }
+            .contact-title {
+                font-size: 20px;
+            }
+            .btn-glow {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-container">
+        <h2 class="contact-title">Contact Me</h2>
+        <form id="contactForm">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+            </div>
+
+            <div class="mb-3">
+                <textarea class="form-control" id="message" placeholder="Your Message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-glow">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#contactForm").submit(function (event) {
+                event.preventDefault(); 
+
+                let name = $("#name").val().trim();
+                let email = $("#email").val().trim();
+                let message = $("#message").val().trim();
+
+                if (name === "" || email === "" || message === "") {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                let mailtoLink = `mailto:hanzlabaig917@gmail.com?subject=Contact%20Form%20Message&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0A%0A${encodeURIComponent(message)}`;
+                
+                window.location.href = mailtoLink;
+            });
+        });
+    </script>
+
+</body>
+</html>
