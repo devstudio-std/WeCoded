@@ -1,3 +1,160 @@
+<body style="background-color: black;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Coded | Dev Community Challenge | International Women Day | By Hanzla Baig</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #0d0d0d, #1a1a1a);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1000;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 0 0 15px #0f0, 0 0 25px #80f, 0 0 35px #00f;
+            animation: glow 2s linear infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #0f0; }
+            50% { box-shadow: 0 0 20px #80f; }
+            100% { box-shadow: 0 0 30px #00f; }
+        }
+
+        .navbar-brand img {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(90deg, #00f, #0f0, #80f);
+            box-shadow: 0 0 15px #0f0;
+            transform: scale(1.1);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(15px);
+                padding: 10px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+    </style>
+</head>
+<body bgcolor="black">
+
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nfcn6junu8xg5e9910ip.png" alt="Logo">
+        </a>
+        <div class="menu-btn">&#9776;</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutme.html">About</a>
+            <a href="blog.html">Blogs</a>
+            <a href="https://hanzladev.netlify.app">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <script>
+        $(document).ready(function(){
+            $(".menu-btn").click(function(){
+                $(".nav-links").slideToggle();
+            });
+        });
+    </script>
+
+</body>
+</html>&nbsp;<br>&nbsp;<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
