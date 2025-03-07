@@ -267,13 +267,13 @@
                 
                 $("#articles").html(""); // Clear previous content
 
-                data.slice(0, 8).forEach(article => { // Limit to 5 articles
+                data.slice(0, 12).forEach(article => { // Limit to 5 articles
                     let coverImage = article.cover_image 
                         ? article.cover_image 
                         : "https://via.assets.so/img.jpg?w=400&h=150&tc=Gray&bg=green"; 
 
                     let articleCard = $(`
-                        <div class="card-container" style="600px;">
+                        <div class="card-container" style="height: 600px;">
                             <div class="glow-border"></div>
                             <div class="card-content">
                                 <img src="${coverImage}" alt="Article Cover" class="card-img" onerror="this.onerror=null; this.src='https://via.assets.so/img.jpg?w=400&h=150&tc=Gray&bg=green';">
